@@ -29,5 +29,5 @@ def delete_user(username):
 
 
 class User(BaseModel):
-    username: str
+    username: constr(max_length=8)
     email: EmailStr
