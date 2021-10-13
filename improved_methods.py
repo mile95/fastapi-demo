@@ -29,16 +29,12 @@ class User(BaseModel):
     email: EmailStr
 
 
-def test_delete_existing_user():
+def test_delete():
     response1 = client.put(
-        "/user", json={"username": "user3", "email": "user1@example.com"}
+        "/user", json={"username": "user3", "email": "user3@example.com"}
     )
     assert response1.status_code == 200
     response2 = client.delete("/user", params={"username": "user3"})
     assert response2.status_code == 200
-    assert response2.json() == "user3 deleted"
-
-
-def test_delete_non_existing_user():
-    response = client.delete("/user", params={"username": "user4"})
-    assert response.status_code == 404
+    response3 = client.delete("/user", params={"username": "user3"})
+    assert response3.status_code == 404
