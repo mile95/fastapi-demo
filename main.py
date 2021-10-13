@@ -13,7 +13,7 @@ def read_root():
 
 
 @app.get("/user")
-def get_user(username) -> User:
+def get_user(username):
     return {"user": username, "email": users[username]}
 
 
