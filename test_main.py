@@ -1,4 +1,3 @@
-import pytest
 from fastapi.testclient import TestClient
 from main import app
 
@@ -20,11 +19,9 @@ def test_create_and_get_user():
     # Try to get one of the users
     response3 = client.get("/user", params={"username": "user1"})
     assert response3.status_code == 200
-    assert response3.json() ==  {'email': 'user1@example.com', 'user': 'user1'}
+    assert response3.json() ==  {'email': 'user1@example.com', 'username': 'user1'}
 
 
-def test_delete_existing_user():
+def test_delete():
     assert True
 
-def test_delete_non_existing_user():
-    assert True
