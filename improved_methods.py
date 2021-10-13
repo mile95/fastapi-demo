@@ -30,11 +30,14 @@ class User(BaseModel):
 
 
 def test_delete_existing_user():
-    response1 = client.put("/user", json={"username": "user3", "email":"user1@example.com"})
+    response1 = client.put(
+        "/user", json={"username": "user3", "email": "user1@example.com"}
+    )
     assert response1.status_code == 200
     response2 = client.delete("/user", params={"username": "user3"})
     assert response2.status_code == 200
     assert response2.json() == "user3 deleted"
+
 
 def test_delete_non_existing_user():
     response = client.delete("/user", params={"username": "user4"})
