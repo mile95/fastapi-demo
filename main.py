@@ -7,14 +7,9 @@ app = FastAPI()
 users = {}
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "Devies"}
-
-
 @app.get("/user")
 def get_user(username):
-    return {"user": username, "email": users[username]}
+    return {"username": username, "email": users[username]}
 
 
 @app.get("/users")
