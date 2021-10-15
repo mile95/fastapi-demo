@@ -2,5 +2,5 @@ from pydantic import BaseModel, EmailStr, constr
 
 
 class User(BaseModel):
-    username: str
-    email: str
+    username: constr(max_length=8)
+    email: EmailStr

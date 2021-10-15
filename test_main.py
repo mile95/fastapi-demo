@@ -4,11 +4,6 @@ from main import app
 client = TestClient(app)
 
 
-def test_read_main():
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == {"Hello": "Devies"}
-
 
 def test_create_and_get_user():
     # Create two users
@@ -27,4 +22,11 @@ def test_create_and_get_user():
 
 
 def test_delete():
-    assert True
+    response1 = client.put(
+        "/user", json={"username": "user3", "email": "user1@example.com"}
+    )
+    assert response1.status_code == 200
+    response2 = client.delete("/user", params={'username':'user3'})
+    assert response2.status_code == 200
+    response3 = client.get("/user", params={'username':'user3'})
+    assert response3.status_code == 404
